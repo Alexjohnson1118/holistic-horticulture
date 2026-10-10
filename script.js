@@ -7,6 +7,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // services dropdown — click/tap to open, works the same on desktop and mobile
+  document.querySelectorAll(".nav-dropdown-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var parent = this.closest(".nav-dropdown");
+      var wasOpen = parent.classList.contains("open");
+      document.querySelectorAll(".nav-dropdown.open").forEach(function (d) {
+        d.classList.remove("open");
+        d.querySelector(".nav-dropdown-toggle").setAttribute("aria-expanded", "false");
+      });
+      if (!wasOpen) {
+        parent.classList.add("open");
+        this.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+  document.addEventListener("click", function () {
+    document.querySelectorAll(".nav-dropdown.open").forEach(function (d) {
+      d.classList.remove("open");
+      d.querySelector(".nav-dropdown-toggle").setAttribute("aria-expanded", "false");
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".nav-dropdown.open").forEach(function (d) { d.classList.remove("open"); });
+    }
+  });
+
   // simple contact form handler — no backend wired up yet, just a
   // friendly confirmation so the form can be demoed before an inbox
   // / form service (e.g. Formspree) is connected.

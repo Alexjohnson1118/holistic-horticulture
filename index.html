@@ -23,8 +23,19 @@
     <nav class="main-nav">
       <ul>
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="workshops.html">Workshops</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Services
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="services.html">All Services</a></li>
+            <li><a href="garden-care.html">Organic Garden Care</a></li>
+            <li><a href="garden-design.html">Garden Design &amp; Planning</a></li>
+            <li><a href="workshops.html">The Potting Shed Sessions</a></li>
+            <li><a href="garden-fitness.html">Garden-Ready Fitness</a></li>
+            <li><a href="consultancy.html">Consultancy</a></li>
+          </ul>
+        </li>
         <li><a href="about.html">About Emelye</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -106,7 +117,7 @@
           </div>
           <h3>Organic Garden Care</h3>
           <p>Regular, chemical-free maintenance — pruning, feeding, weeding and seasonal tidy-ups using no-dig and peat-free principles throughout.</p>
-          <a class="card-link" href="services.html#garden-care">Learn more →</a>
+          <a class="card-link" href="garden-care.html">Learn more →</a>
         </div>
 
         <div class="card">
@@ -115,7 +126,7 @@
           </div>
           <h3>Garden Design &amp; Planning</h3>
           <p>Moved house and inherited a blank plot, or ready to reimagine an old one? We'll plan the planting, layout and phasing with you.</p>
-          <a class="card-link" href="services.html#design-planning">Learn more →</a>
+          <a class="card-link" href="garden-design.html">Learn more →</a>
         </div>
 
         <div class="card">
@@ -133,7 +144,16 @@
           </div>
           <h3>Garden-Ready Fitness</h3>
           <p>1:1 training with a European &amp; UK CrossFit Champion, built around the lifting, digging and kneeling that gardening actually demands.</p>
-          <a class="card-link" href="services.html#garden-fitness">Learn more →</a>
+          <a class="card-link" href="garden-fitness.html">Learn more →</a>
+        </div>
+
+        <div class="card">
+          <div class="icon-badge">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="1.5"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Garden Consultancy</h3>
+          <p>One visit, a proper diagnosis, and a written action plan — expert advice with no ongoing commitment.</p>
+          <a class="card-link" href="consultancy.html">Learn more →</a>
         </div>
       </div>
     </div>
