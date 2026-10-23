@@ -478,11 +478,18 @@ section{ padding: 80px 0; }
 
 /* ---------------- Service cards ---------------- */
 .card-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 28px;
 }
-@media (max-width: 640px){ .card-grid{ grid-template-columns: 1fr; } }
+.card-grid .card{
+  flex: 1 1 260px;
+  max-width: 340px;
+}
+@media (max-width: 640px){
+  .card-grid .card{ flex-basis: 100%; max-width: 440px; }
+}
 
 .card{
   background: var(--paper);
@@ -728,9 +735,17 @@ section{ padding: 80px 0; }
 
 /* ---------------- Service hub cards (services.html overview) ---------------- */
 .service-hub-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 28px;
+}
+.service-hub-grid .service-hub-card{
+  flex: 1 1 300px;
+  max-width: 360px;
+}
+@media (max-width: 680px){
+  .service-hub-grid .service-hub-card{ flex-basis: 100%; max-width: 440px; }
 }
 .service-hub-card{
   display:flex;
@@ -789,11 +804,18 @@ section{ padding: 80px 0; }
 
 /* ---------------- Pricing / packages ---------------- */
 .price-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 26px;
 }
-@media (max-width: 640px){ .price-grid{ grid-template-columns:1fr; } }
+.price-grid .price-card{
+  flex: 1 1 240px;
+  max-width: 300px;
+}
+@media (max-width: 640px){
+  .price-grid .price-card{ flex-basis: 100%; max-width: 420px; }
+}
 
 .price-card .price.custom{ font-size: 1.3rem; }
 .price-card .note{ font-size: 0.82rem; color:#7a7a6c; margin: -10px 0 18px; }
@@ -957,3 +979,41 @@ footer{
 /* utility */
 .center{ text-align:center; }
 .mt-0{ margin-top:0; }
+
+/* ---------------- Scroll reveal — soft, smooth entrance as content
+   comes into view. Applied broadly via JS (see script.js); CSS here
+   just defines the resting/revealed states and the easing. ---------------- */
+.reveal-up{
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(.22,.61,.36,1), transform 0.8s cubic-bezier(.22,.61,.36,1);
+  will-change: opacity, transform;
+}
+.reveal-up.in-view{
+  opacity: 1;
+  transform: translateY(0);
+}
+/* gentle stagger within a row/group — JS sets --reveal-i per element */
+.reveal-up{ transition-delay: calc(var(--reveal-i, 0) * 90ms); }
+
+@media (prefers-reduced-motion: reduce){
+  .reveal-up{ opacity:1; transform:none; transition:none; }
+}
+
+/* subtle continuous life on primary buttons — soft breathing shadow */
+.btn-primary{
+  transition: transform .15s ease, background .2s ease, box-shadow .4s ease;
+}
+.btn-primary:hover{ box-shadow: 0 10px 24px -10px rgba(75,90,66,0.45); }
+
+/* smoother image reveal within frames — gentle scale-in on load */
+.photo img, .tarot-frame-inner img{
+  animation: photo-settle .9s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes photo-settle{
+  from{ opacity:0; transform: scale(1.04); }
+  to{ opacity:1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce){
+  .photo img, .tarot-frame-inner img{ animation:none; }
+}

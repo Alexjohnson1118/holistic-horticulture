@@ -35,21 +35,73 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // simple contact form handler — no backend wired up yet, just a
-  // friendly confirmation so the form can be demoed before an inbox
-  // / form service (e.g. Formspree) is connected.
+  // soft, smooth scroll-reveal for key content blocks — cards, pricing,
+  // section intros, feature images etc. fade + drift up into place as
+  // they enter the viewport. Respects prefers-reduced-motion via CSS.
+  var revealSelectors = [
+    ".section-head", ".card", ".price-card", ".feature-text",
+    ".feature-row > .photo", ".feature-row > .tarot-frame",
+    ".service-hub-card", ".value", ".step", ".ba-pair",
+    ".coach-card", ".pull-quote", ".aside-note", ".gallery-grid > .photo"
+  ].join(", ");
+  var revealEls = document.querySelectorAll(revealSelectors);
+  var revealCounters = new Map();
+  revealEls.forEach(function (el) {
+    el.classList.add("reveal-up");
+    var parent = el.parentElement;
+    var i = revealCounters.get(parent) || 0;
+    el.style.setProperty("--reveal-i", i % 4);
+    revealCounters.set(parent, i + 1);
+  });
+  if ("IntersectionObserver" in window) {
+    var revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+    revealEls.forEach(function (el) { revealIO.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("in-view"); });
+  }
+
+  // Contact form — no backend/form service connected, so this builds a
+  // pre-filled mailto: to the business inbox and hands off to the
+  // visitor's own mail app to actually send it. Works with zero setup;
+  // swap for a service like Formspree later for a fully silent submit.
   var form = document.querySelector("#contact-form");
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var interest = form.interest.value;
+      var message = form.message.value.trim();
+
+      var subject = "Enquiry from " + name + " — " + interest;
+      var body =
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Interested in: " + interest + "\n\n" +
+        message;
+
+      var mailto =
+        "mailto:holistichorticultureuk@gmail.com" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      window.location.href = mailto;
+
       var btn = form.querySelector("button[type=submit]");
       var original = btn.textContent;
-      btn.textContent = "Message sent ✦";
+      btn.textContent = "Opening your email app ✦";
       btn.disabled = true;
-      form.reset();
       setTimeout(function () {
         btn.textContent = original;
         btn.disabled = false;
+        form.reset();
       }, 3200);
     });
   }
