@@ -485,10 +485,11 @@ section{ padding: 80px 0; }
 }
 .card-grid .card{
   flex: 1 1 260px;
+  min-width: 260px;
   max-width: 340px;
 }
 @media (max-width: 640px){
-  .card-grid .card{ flex-basis: 100%; max-width: 440px; }
+  .card-grid .card{ flex-basis: 100%; min-width: 0; max-width: 440px; }
 }
 
 .card{
@@ -742,10 +743,11 @@ section{ padding: 80px 0; }
 }
 .service-hub-grid .service-hub-card{
   flex: 1 1 300px;
+  min-width: 300px;
   max-width: 360px;
 }
 @media (max-width: 680px){
-  .service-hub-grid .service-hub-card{ flex-basis: 100%; max-width: 440px; }
+  .service-hub-grid .service-hub-card{ flex-basis: 100%; min-width: 0; max-width: 440px; }
 }
 .service-hub-card{
   display:flex;
@@ -811,10 +813,11 @@ section{ padding: 80px 0; }
 }
 .price-grid .price-card{
   flex: 1 1 240px;
+  min-width: 240px;
   max-width: 300px;
 }
 @media (max-width: 640px){
-  .price-grid .price-card{ flex-basis: 100%; max-width: 420px; }
+  .price-grid .price-card{ flex-basis: 100%; min-width: 0; max-width: 420px; }
 }
 
 .price-card .price.custom{ font-size: 1.3rem; }
