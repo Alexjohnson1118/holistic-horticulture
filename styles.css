@@ -871,6 +871,7 @@ section{ padding: 80px 0; }
   box-shadow: 0 20px 40px -24px rgba(201,136,88,0.45);
   position:relative;
 }
+.price-card.featured.no-badge::before{ content:none; }
 .price-card.featured::before{
   content:"Most popular";
   position:absolute; top:-12px; left:26px;
@@ -900,6 +901,38 @@ section{ padding: 80px 0; }
 }
 .price-card li:first-child{ border-top:none; }
 .price-card li svg{ width:16px; height:16px; color: var(--sage); flex-shrink:0; margin-top:3px; }
+
+/* ---------------- Rate table (label + right-aligned price) ---------------- */
+.rate-table{ margin: 4px 0 24px; }
+.rate-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:18px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line-soft);
+}
+.rate-row:first-child{ border-top:none; padding-top:2px; }
+.rate-label{
+  display:block;
+  font-weight:600;
+  color: var(--charcoal);
+  font-size:1rem;
+}
+.rate-note{
+  display:block;
+  font-size:0.85rem;
+  color:#7a7a6c;
+  margin-top:4px;
+}
+.rate-price{
+  font-family: var(--font-head);
+  font-size:1.5rem;
+  color: var(--sage-dark);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.rate-price small{ font-family: var(--font-body); font-size:0.9rem; color:#777; font-weight:500; }
 
 /* ---------------- CTA band ---------------- */
 .cta-band{
