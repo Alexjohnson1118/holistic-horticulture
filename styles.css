@@ -867,6 +867,7 @@ section{ padding: 80px 0; }
   padding: 32px 26px;
 }
 .price-card.featured{
+  border-width: 2px;
   border-color: var(--clay);
   box-shadow: 0 20px 40px -24px rgba(201,136,88,0.45);
   position:relative;
@@ -928,11 +929,13 @@ section{ padding: 80px 0; }
 .rate-price{
   font-family: var(--font-head);
   font-size:1.5rem;
-  color: var(--sage-dark);
+  color: var(--clay-dark);
   white-space:nowrap;
   flex-shrink:0;
 }
 .rate-price small{ font-family: var(--font-body); font-size:0.9rem; color:#777; font-weight:500; }
+.price-card.featured .btn-primary{ background: var(--clay); }
+.price-card.featured .btn-primary:hover{ background: var(--clay-dark); }
 
 /* ---------------- CTA band ---------------- */
 .cta-band{
